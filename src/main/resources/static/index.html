@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- 🟡 Add UTF-8 encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVIS Chatbot</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #EAF2F8; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 20px; 
+        }
+        h2 {
+            color: #2C3E50; 
+            margin-bottom: 10px;
+        }
+        #chatbox {
+            width: 400px;
+            height: 350px;
+            border: 2px solid #BDC3C7;
+            border-radius: 8px;
+            padding: 10px;
+            overflow-y: scroll;
+            background-color: #FDFEFE;
+            margin-bottom: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: 320px;
+            padding: 12px;
+            border: 1px solid #BDC3C7;
+            border-radius: 20px;
+            outline: none;
+        }
+        button {
+            padding: 12px 18px;
+            margin-left: 5px;
+            cursor: pointer;
+            background-color: #2ECC71;
+            color: white;
+            border: none;
+            border-radius: 20px;
+        }
+        button:hover {
+            background-color: #27AE60;
+        }
+        p {
+            margin: 5px 0;
+            padding: 6px 10px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        .user-msg {
+            color: #2C3E50;
+            font-weight: bold;
+            background-color: #D5F5E3;
+            text-align: right;
+        }
+        .bot-msg {
+            color: #145A32;
+            font-weight: bold;
+            background-color: #D4EFDF;
+        }
+        .error-msg {
+            color: #C0392B;
+            font-weight: bold;
+            background-color: #FADBD8;
+        }
+        .timestamp {
+            font-size: 10px;
+            color: #7F8C8D;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>💬 Chat with AVIS</h2>
+    <div id="chatbox"></div>
+
+    <input 
+        type="text" 
+        id="userInput" 
+        placeholder="Type your message..." 
+        onkeypress="if(event.key==='Enter') sendMessage()" 
+        autofocus
+    >
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        const API_URL = 'http://localhost:8080/api/chat';
+        const API_KEY = 'Bearer ' + (localStorage.getItem('GEMINI_API_KEY') || '');
+
+        // ✅ Display Message Function
+        function displayMessage(message, sender, type = 'bot') {
+            const chatbox = document.getElementById("chatbox");
+            const time = new Date().toLocaleTimeString();
+            chatbox.innerHTML += `
+                <p class="${type}-msg">
+                    ${sender}: ${message}
+                    <br><span class="timestamp">${time}</span>
+                </p>`;
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        // ✅ Send Message Function
+        async function sendMessage() {
+            const userInput = document.getElementById("userInput");
+            const userMessage = userInput.value.trim();
+
+            if (!userMessage) return;
+
+            displayMessage(userMessage, '👤 You', 'user');
+            userInput.value = "";
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': API_KEY
+                    },
+                    body: JSON.stringify({ message: userMessage })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const botResponse = data.response || "🤖 No response received.";
+                displayMessage(botResponse, '🤖 AVIS', 'bot');
+
+            } catch (error) {
+                console.error('Error:', error);
+                displayMessage(`🚨 Error: ${error.message}`, '⚠️', 'error');
+            }
+        }
+    </script>
+
+</body>
+</html>
