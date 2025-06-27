@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # A.V.I.S - AI Assistant Chatbot
 
 A.V.I.S (Advanced Virtual Intelligence System) is a modern AI assistant chatbot with a sleek React frontend and Spring Boot backend. It uses the Gemini API to provide intelligent responses to user queries.
@@ -86,3 +87,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+=======
+# chatbot-avis
+>>>>>>> 15cc7ebf0073c2feb6787eab10381726ae1d5cf8
