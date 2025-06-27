@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <circle cx="256" cy="256" r="240" fill="#0066cc" />
+  <text x="256" y="300" font-family="Arial, sans-serif" font-size="200" font-weight="bold" text-anchor="middle" fill="white">A</text>
+  <path d="M128,128 Q256,60 384,128" stroke="white" stroke-width="12" fill="none" />
+  <path d="M128,384 Q256,452 384,384" stroke="white" stroke-width="12" fill="none" />
+  <text x="256" y="380" font-family="Arial, sans-serif" font-size="40" font-weight="bold" text-anchor="middle" fill="white">V.I.S</text>
+</svg>

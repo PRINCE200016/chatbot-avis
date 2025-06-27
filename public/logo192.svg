@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <circle cx="96" cy="96" r="88" fill="#0066cc" />
+  <text x="96" y="120" font-family="Arial, sans-serif" font-size="80" font-weight="bold" text-anchor="middle" fill="white">A</text>
+  <path d="M48,48 Q96,20 144,48" stroke="white" stroke-width="6" fill="none" />
+  <path d="M48,144 Q96,172 144,144" stroke="white" stroke-width="6" fill="none" />
+  <text x="96" y="150" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">V.I.S</text>
+</svg>
