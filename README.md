@@ -86,7 +86,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This projet is belongs to Arjun Rajawat.
 =======
 # chatbot-avis
 >>>>>>> 15cc7ebf0073c2feb6787eab10381726ae1d5cf8
